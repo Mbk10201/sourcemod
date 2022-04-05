@@ -233,6 +233,51 @@ methodmap DBResultSet < Handle
 	// @return             Number of bytes for the field's data size.
 	// @error              Invalid field index or no current result set.
 	public native int FetchSize(int field);
+	
+	// Returns the integer value of a field fetched by is name
+	// 
+	// @param name         The field name.
+	// @return             An integer value.
+	public int FetchIntByName(char[] name)
+	{
+		int field;
+		this.FieldNameToNum(name, field);
+		return this.FetchInt(field);
+	}
+	
+	// Returns the string value of a field fetched by is name
+	// 
+	// @param buffer       String buffer.
+	// @param maxlength    Maximum size of the string buffer.
+	// @return             Number of bytes written.
+	public int FetchStringByName(char[] name, char[] buffer, int maxlength)
+	{
+		int field;
+		this.FieldNameToNum(name, field);
+		return this.FetchString(field, buffer, maxlength);
+	}
+	
+	// Returns the float value of a field fetched by is name
+	// 
+	// @param name         The field name.
+	// @return             An float value.
+	public float FetchFloatByName(char[] name)
+	{
+		int field;
+		this.FieldNameToNum(name, field);
+		return this.FetchFloat(field);
+	}
+	
+	// Returns the boolean value of a field fetched by is name
+	// 
+	// @param name         The field name.
+	// @return             An boolean value.
+	public bool FetchBoolByName(char[] name)
+	{
+		int field;
+		this.FieldNameToNum(name, field);
+		return view_as<bool>(this.FetchInt(field));
+	}
 };
 
 typeset SQLTxnSuccess
