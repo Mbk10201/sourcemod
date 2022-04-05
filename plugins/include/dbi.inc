@@ -281,7 +281,7 @@ methodmap DBResultSet < Handle
 			return false;
 		}
 		
-		this.FetchFloat(field);
+		value = this.FetchFloat(field);
 		return true;
 	}
 };
